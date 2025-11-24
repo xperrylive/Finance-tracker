@@ -1,0 +1,43 @@
+{% extends "layout.html"%}
+
+{% block title%} Portfolio {% endblock %}
+
+{%block main%}
+
+<table class="table table-striped">
+    <thead>
+        <th>Symobl</th>
+        <th>Shares</th>
+        <th>Price</th>
+        <th>Total</th>
+        <th>PnL</th>
+    </thead>
+    <tbody>
+        {% for row in shares %}
+            <tr>
+                <td>{{row.symbol}}</td>
+                <td>{{row.shares}}</td>
+                <td>{{row.price}}</td>
+                <td>{{row.total}}</td>
+                <td class="pnl">{{row.PnL}}</td>
+            </tr>
+        {% endfor %}
+
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>Cash</td>
+            <td>{{cash}}</td>
+        </tr>
+        <tr>
+            <td>Total</td>
+            <td>{{total_wallet_value}}</td>
+        </tr>
+        <tr>
+            <td>Total Portfolio PnL</td>
+            <td class="pnl">{{total_profit_and_loss}}</td>
+        </tr>
+    </tfoot>
+</table>
+
+{% endblock %}
