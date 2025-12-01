@@ -1,5 +1,3 @@
-import os
-
 from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
@@ -209,14 +207,17 @@ def quote():
 def register():
     """Register user"""
     if request.method == "POST":
-        if not request.form.get("username") or not request.form.get("password"):
+        username = request.form.get("username").strip()
+        password = request.form.get("password").strip()
+        confirm_password = request.form.get("confirm_password").strip()
+        if not username or not password:
             flash("Please provide username AND password")
             return render_template("register.html")
         
-        if request.form.get("password") != request.form.get("confirm_password"):
+        if password != confirm_password:
             flash("Passwords do not match")
             return render_template("register.html")
-        exists = db.execute("SELECT * FROM users WHERE username = ?", request.form.get("username").lower())
+        exists = db.execute("SELECT * FROM users WHERE username = ?", username.lower().strip())
 
         if exists:
             flash("Username already exists")
