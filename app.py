@@ -244,8 +244,8 @@ def register():
 def sell():
     """Sell shares of stock"""
     user_id = session["user_id"]
+    data = db.execute("SELECT symbol,shares FROM holdings WHERE user_id = ?", user_id)
     if request.method == "POST":
-        data = db.execute("SELECT symbol,shares FROM holdings WHERE user_id = ?", user_id)
         try:
             shares = int(request.form.get("shares-to-sell"))
             if shares <= 0:
