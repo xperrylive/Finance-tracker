@@ -17,9 +17,9 @@
             <tr>
                 <td>{{row.symbol}}</td>
                 <td>{{row.shares}}</td>
-                <td>{{row.price}}</td>
-                <td>{{row.total}}</td>
-                <td class="pnl">{{row.PnL}}</td>
+                <td>{{row.price | usd}}</td>
+                <td>{{row.total | usd}}</td>
+                <td class="pnl">{{row.PnL | usd}}</td>
             </tr>
         {% endfor %}
 
@@ -27,15 +27,15 @@
     <tfoot>
         <tr>
             <td>Cash</td>
-            <td>{{cash}}</td>
+            <td>{{cash | usd}}</td>
         </tr>
         <tr>
             <td>Total</td>
-            <td>{{total_wallet_value}}</td>
+            <td>{{total_wallet_value | usd}}</td>
         </tr>
         <tr>
             <td>Total Portfolio PnL</td>
-            <td class="pnl">{{total_profit_and_loss}}</td>
+            <td class="pnl">{{total_profit_and_loss | usd}}</td>
         </tr>
     </tfoot>
 </table>

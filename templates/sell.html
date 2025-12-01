@@ -9,14 +9,15 @@
 <form action="/sell" method="post">
     <div class="mb-3">
         <label class="form-label">Choose a stock</label>
-        <select id="stock-select" name="symbol" class="form-select mt-2" name="symbol">
+        <select id="stock-select" name="stock-selected" class="form-select mt-2" default="selected" required>
+            <option disabled selected value> -- select an option -- </option>
             {% for holding in holdings %}
                 <option value="{{ holding.symbol }}">{{ holding.symbol }} — {{ holding.shares }} shares</option>
             {% endfor %}
         </select>
 
         <div class="input-group">
-            <input type="number" id="shares_amount" name="shares" class="form-control" placeholder="Shares...">
+            <input type="number" id="shares_amount" name="shares-to-sell" class="form-control" placeholder="Shares..." required min="1">
         </div>
 
         <button type="submit" class="btn btn-primary mt-3">Sell</button>
