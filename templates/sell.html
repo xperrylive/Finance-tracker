@@ -9,7 +9,7 @@
 <form action="/sell" method="post">
     <div class="mb-3">
         <label class="form-label">Choose a stock</label>
-        <select id="stock-select" name="stock-selected" class="form-select mt-2" default="selected" required>
+        <select id="stock-select" name="stock-selected" class="form-select mt-2" required>
             <option disabled selected value> -- select an option -- </option>
             {% for holding in holdings %}
                 <option value="{{ holding.symbol }}">{{ holding.symbol }} — {{ holding.shares }} shares</option>
