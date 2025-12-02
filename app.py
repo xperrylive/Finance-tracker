@@ -209,12 +209,12 @@ def register():
     if request.method == "POST":
         username = request.form.get("username").strip()
         password = request.form.get("password").strip()
-        confirm_password = request.form.get("confirm_password").strip()
-        if not username or not password:
+        confirmation = request.form.get("confirmation").strip()
+        if not username or not password or not confirmation:
             flash("Please provide username AND password")
             return render_template("register.html")
         
-        if password != confirm_password:
+        if password != confirmation:
             flash("Passwords do not match")
             return render_template("register.html")
         exists = db.execute("SELECT * FROM users WHERE username = ?", username.lower().strip())
